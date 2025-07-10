@@ -1,0 +1,33 @@
+import {auth} from '../firebase'
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useForm } from "react-hook-form"
+import { loginData } from "../Pages/Login/LoginFormData";
+import { useState } from "react";
+
+export default function uselogin() {
+ const { register, handleSubmit, formState : {errors} } = useForm<loginData>()
+  const [isSuccess , setIsSuccess] = useState(false)
+  const [isError , setIsError] = useState(false)
+  const [islouding , setIslouding] = useState(false)
+  async function handleLogin(data: loginData) {
+      setIslouding(true)
+        try {
+          const res = await signInWithEmailAndPassword(auth, data.email, data.password)
+          setIsSuccess(true)
+          setIslouding(false)
+          localStorage.setItem('tkn', (await res.user.getIdTokenResult()).token)
+          setTimeout(() => {
+            setIsSuccess(false)
+          }, 2000);
+            console.log((await res.user.getIdTokenResult()).token)
+        } catch (error) {
+          setIsError(true)
+          setIslouding(false)
+          setTimeout(() => {
+            setIsError(false)
+          }, 2000);
+            console.log(error)
+        }
+    }
+    return {register,handleSubmit,isSuccess,isError,islouding,handleLogin,errors}
+}
