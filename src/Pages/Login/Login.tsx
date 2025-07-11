@@ -14,7 +14,7 @@ export default function Login() {
             </Alert>}
     
             {isError && <Alert color="failure">
-          <span className="font-medium">Email is Already in use</span>
+          <span className="font-medium">Incorrect Email or Password</span>
             </Alert>}
             
               <FloatingLabel

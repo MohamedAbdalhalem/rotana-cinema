@@ -2,7 +2,10 @@ import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "f
 import { Dropdown, DropdownDivider, DropdownHeader, DropdownItem } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { Link, NavLink } from 'react-router';
+import { useSelector } from "react-redux"
+import { ourStoreType } from "../../lib/store"
 export function Nav() {
+  const {token} = useSelector((state: ourStoreType) => state.authsilce)
   const [isDark,setIsDark] = useState('Light-mood')
   function handleDarkMood() {
     if (localStorage.getItem('theme') === 'light-mood') {
@@ -35,28 +38,35 @@ export function Nav() {
         <Dropdown color='alternative' className="md:flex hidden  cursor-pointer" label="Setting">
       <DropdownHeader className="border-b border-gray-100  dark:border-gray-600 ">
         <span className="block font-bold ">3ab7alim</span>
-      </DropdownHeader>
-      <DropdownItem as={NavLink} to="/login">Log-in</DropdownItem>
+          </DropdownHeader>
+          {token ? <DropdownItem>log-out</DropdownItem> : 
+            <>
+              <DropdownItem as={NavLink} to="/login">Log-in</DropdownItem>
       <DropdownItem as={NavLink} to="/register">Register</DropdownItem>
-      <DropdownItem>log-out</DropdownItem>
+            </>}
+      
       <DropdownDivider />
           <DropdownItem onClick={handleDarkMood}>{ isDark }</DropdownItem>
     </Dropdown>
         <NavbarToggle />
       </div>
       <NavbarCollapse>
-        <NavbarLink>Home</NavbarLink>
+        {token && <>
+          <NavbarLink><NavLink to='/'>Home</NavLink></NavbarLink>
         <NavbarLink>About</NavbarLink>
         <NavbarLink>Services</NavbarLink>
         <NavbarLink>Pricing</NavbarLink>
         <NavbarLink>Contact</NavbarLink>
-        <Dropdown className="md:hidden z-50 flex mt-2 cursor-pointer" label="Setting">
+        </>}
+        <Dropdown color='alternative' className="md:hidden z-50 flex mt-2 cursor-pointer" label="Setting">
       <DropdownHeader className="border-b border-gray-100  dark:border-gray-600">
         <span className="block font-bold ">3ab7alim</span>
       </DropdownHeader>
-      <DropdownItem as={NavLink} to="/login">Log-in</DropdownItem>
+      {token ? <DropdownItem>log-out</DropdownItem> : 
+            <>
+              <DropdownItem as={NavLink} to="/login">Log-in</DropdownItem>
       <DropdownItem as={NavLink} to="/register">Register</DropdownItem>
-      <DropdownItem>log-out</DropdownItem>
+            </>}
       <DropdownDivider />
       <DropdownItem onClick={handleDarkMood}>{ isDark }</DropdownItem>
     </Dropdown>

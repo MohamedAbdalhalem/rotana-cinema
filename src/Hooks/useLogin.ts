@@ -3,12 +3,18 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useForm } from "react-hook-form"
 import { loginData } from "../Pages/Login/LoginFormData";
 import { useState } from "react";
+import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../lib/authSlice';
+
 
 export default function uselogin() {
- const { register, handleSubmit, formState : {errors} } = useForm<loginData>()
+  const { register, handleSubmit, formState : {errors} } = useForm<loginData>()
   const [isSuccess , setIsSuccess] = useState(false)
   const [isError , setIsError] = useState(false)
-  const [islouding , setIslouding] = useState(false)
+  const [islouding, setIslouding] = useState(false)
+  const navigateToHome = useNavigate()
+  const dispatch = useDispatch()
   async function handleLogin(data: loginData) {
       setIslouding(true)
         try {
@@ -16,8 +22,11 @@ export default function uselogin() {
           setIsSuccess(true)
           setIslouding(false)
           localStorage.setItem('tkn', (await res.user.getIdTokenResult()).token)
+          dispatch(setToken((await res.user.getIdTokenResult()).token))
           setTimeout(() => {
             setIsSuccess(false)
+            
+            navigateToHome('/')
           }, 2000);
             console.log((await res.user.getIdTokenResult()).token)
         } catch (error) {
