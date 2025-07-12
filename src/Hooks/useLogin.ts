@@ -22,12 +22,12 @@ export default function uselogin() {
           setIsSuccess(true)
           setIslouding(false)
           localStorage.setItem('tkn', (await res.user.getIdTokenResult()).token)
-          dispatch(setToken((await res.user.getIdTokenResult()).token))
+          
           setTimeout(() => {
             setIsSuccess(false)
-            
             navigateToHome('/')
           }, 2000);
+          dispatch(setToken((await res.user.getIdTokenResult()).token))
             console.log((await res.user.getIdTokenResult()).token)
         } catch (error) {
           setIsError(true)

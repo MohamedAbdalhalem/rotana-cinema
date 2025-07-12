@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form"
 import { registerData } from "../Pages/Register/RegisterFormData.type";
 import { useState } from "react";
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../lib/authSlice';
 
 export default function useRegister() {
  const { register, handleSubmit, formState : {errors} } = useForm<registerData>()
@@ -11,6 +13,7 @@ export default function useRegister() {
   const [isError , setIsError] = useState(false)
   const [islouding, setIslouding] = useState(false)
   const navigateToHome = useNavigate()
+  const dispatch = useDispatch()
   async function handleRegister(data: registerData) {
       setIslouding(true)
         try {
@@ -22,6 +25,7 @@ export default function useRegister() {
             setIsSuccess(false)
             navigateToHome('/')
           }, 2000);
+          dispatch(setToken((await res.user.getIdTokenResult()).token))
             console.log((await res.user.getIdTokenResult()).token)
         } catch (error) {
           setIsError(true)
