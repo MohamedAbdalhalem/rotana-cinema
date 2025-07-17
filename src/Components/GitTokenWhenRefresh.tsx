@@ -1,6 +1,6 @@
 import  { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setToken } from '../../lib/authSlice'
+import { setToken } from '../lib/authSlice'
 
 export default function GitTokenWhenRefresh() {
     const dispatch = useDispatch()

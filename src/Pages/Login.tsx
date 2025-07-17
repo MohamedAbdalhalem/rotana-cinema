@@ -1,5 +1,5 @@
 import { Button, FloatingLabel,Alert,Spinner   } from "flowbite-react";
-import uselogin from "../../Hooks/useLogin";
+import uselogin from "../Hooks/useLogin";
 
 export default function Login() {
     const {register,handleSubmit,handleLogin,isError,isSuccess,islouding,errors} = uselogin()

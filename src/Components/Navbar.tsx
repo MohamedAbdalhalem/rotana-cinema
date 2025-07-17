@@ -2,9 +2,10 @@ import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "f
 import { Dropdown, DropdownDivider, DropdownHeader, DropdownItem } from "flowbite-react";
 import { Link, NavLink } from 'react-router';
 import { useSelector } from "react-redux"
-import { ourStoreType } from "../../lib/store"
-import useDarkMood from "../../Hooks/useDarkMood";
-import useLogout from "../../Hooks/useLogout";
+import useLogout from "../Hooks/useLogout";
+import useDarkMood from "../Hooks/useDarkMood";
+import { ourStoreType } from "../lib/store";
+
 
 export function Nav() {
   const {token} = useSelector((state: ourStoreType) => state.authsilce)
@@ -36,9 +37,9 @@ export function Nav() {
       <NavbarCollapse>
         {token && <>
           <NavbarLink><NavLink to='/'>Home</NavLink></NavbarLink>
-        <NavbarLink>About</NavbarLink>
-        <NavbarLink>Services</NavbarLink>
-        <NavbarLink>Pricing</NavbarLink>
+        <NavbarLink>Movies</NavbarLink>
+        <NavbarLink>Tv</NavbarLink>
+        <NavbarLink>People</NavbarLink>
         <NavbarLink>Contact</NavbarLink>
         </>}
         <Dropdown color='alternative' className="md:hidden z-50 flex mt-2 cursor-pointer" label="Setting">

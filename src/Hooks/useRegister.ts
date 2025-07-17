@@ -1,11 +1,11 @@
 import {auth} from '../firebase'
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useForm } from "react-hook-form"
-import { registerData } from "../Pages/Register/RegisterFormData.type";
 import { useState } from "react";
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../lib/authSlice';
+import { registerData } from '../Types/RegisterFormData.type';
 
 export default function useRegister() {
  const { register, handleSubmit, formState : {errors} } = useForm<registerData>()

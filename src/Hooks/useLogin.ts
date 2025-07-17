@@ -1,11 +1,11 @@
 import {auth} from '../firebase'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useForm } from "react-hook-form"
-import { loginData } from "../Pages/Login/LoginFormData";
 import { useState } from "react";
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../lib/authSlice';
+import { loginData } from '../Types/LoginFormData';
 
 
 export default function uselogin() {

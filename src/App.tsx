@@ -1,15 +1,17 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 
-import Register from "./Pages/Register/Register";
-import Layout from "./Components/Layout/Layout";
-import Login from "./Pages/Login/Login";
-import Notfound from "./Pages/Notfound/Notfound";
-import Home from "./Pages/Home/Home";
+import Login from "./Pages/Login";
+import Notfound from "./Pages/Notfound";
+import Home from "./Pages/Home";
 import { Provider } from "react-redux";
 import { ourStore } from "./lib/store";
-import GitTokenWhenRefresh from "./Components/GitTokenWhenRefresh/GitTokenWhenRefresh";
-import UnAuthRoute from "./Components/UnAuthRoute/UnAuthRoute";
-import AuthRoute from "./Components/AuthRoute/AuthRoute";
+import GitTokenWhenRefresh from "./Components/GitTokenWhenRefresh";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Layout from "./Components/Layout";
+import AuthRoute from "./Components/AuthRoute";
+import UnAuthRoute from "./Components/UnAuthRoute";
+import Register from "./Pages/Register";
 const router = createBrowserRouter([{
   path: '', element: <Layout />, children: [
     {path:'',element: <AuthRoute><Home/></AuthRoute> },
@@ -18,12 +20,15 @@ const router = createBrowserRouter([{
     {path: '*',element:<Notfound/>}
   ]
 }])
+const queryClient = new QueryClient()
 export default function App() {
   return (
     <>
       <Provider store={ourStore}>
+        <QueryClientProvider client={queryClient}>
         <GitTokenWhenRefresh/>
-        <RouterProvider router={router} />
+          <RouterProvider router={router} />
+          </QueryClientProvider>
         </Provider>
     </>
   )

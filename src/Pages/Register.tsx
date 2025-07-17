@@ -1,5 +1,6 @@
 import { Button, FloatingLabel,Alert,Spinner   } from "flowbite-react";
-import useRegister from "../../Hooks/useRegister";
+import useRegister from "../Hooks/useRegister";
+
 export default function Register() {
   const {handleRegister,handleSubmit,isError,isSuccess,islouding,register,errors} = useRegister()
   return (

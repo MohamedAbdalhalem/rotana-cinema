@@ -13,6 +13,30 @@ body{
     font-weight: 900;
 }
 section{
-    background-image: url('.//assets/h3KN24PrOheHVYs9ypuOIdFBEpX.webp');
-
+    background-image: linear-gradient(to bottom, rgba(0, 24, 129, 0.5), rgba(0, 24, 129, 0.5)), url('./assets/h3KN24PrOheHVYs9ypuOIdFBEpX.webp');
+}
+.slick-prev:before,.slick-next:before{
+    
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900;
+    opacity: 1 !important   ;
+    font-size: 30px !important;
+}
+.slick-prev:before{
+    content: '\f053';
+}
+.slick-next:before{
+    content: '\f054';
+}
+.slick-prev{
+    left: -13px !important;
+    
+    z-index: 100000 !important;
+}
+.slick-next{
+    right: -15px !important;
+}
+.upComing{
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./assets/how-can-someone-make-this-background-with-html-and-css-i-v0-zjgs096khv591.webp');
+    background-size: cover;
 }
