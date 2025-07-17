@@ -1,5 +1,4 @@
 import Slider from "react-slick";
-import SliderItem1 from "./SliderItem1";
 import LoudingISlider from "./LoudingSlider";
 import useTvTrending from "../Hooks/useTvTrending";
 import SliderItem2 from "./SliderItem2";
