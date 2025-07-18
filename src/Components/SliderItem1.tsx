@@ -1,9 +1,10 @@
+import { Link } from "react-router";
 import { movieType } from "../Types/MovieType";
 
 export default function SliderItem1({movieData} : {movieData : movieType}) {
   return (
     <div className="px-2">
-          <div className="relative h-[350px] mb-2  rounded-2xl bg-white dark:bg-gray-900 shadow-lg overflow-hidden">
+          <Link to={`/movieDetials/${movieData.id}`} className="relative h-[350px] mb-2  rounded-2xl bg-white dark:bg-gray-900 shadow-lg overflow-hidden">
   <div className="relative">
     <img
       src={`https://image.tmdb.org/t/p/w500_and_h282_face/${movieData.backdrop_path}`} 
@@ -24,7 +25,7 @@ export default function SliderItem1({movieData} : {movieData : movieType}) {
                       {movieData.release_date}
     </p>
   </div>
-</div>
+</Link>
 
           </div>
   )

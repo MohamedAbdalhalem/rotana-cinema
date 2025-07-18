@@ -16,11 +16,15 @@ section{
     background-image: linear-gradient(to bottom, rgba(0, 24, 129, 0.5), rgba(0, 24, 129, 0.5)), url('./assets/h3KN24PrOheHVYs9ypuOIdFBEpX.webp');
 }
 .slick-prev:before,.slick-next:before{
-    
+    color: black;
     font-family: "Font Awesome 5 Free"; 
     font-weight: 900;
     opacity: 1 !important   ;
     font-size: 30px !important;
+}
+.dark .slick-prev:before,
+.dark .slick-next:before {
+  color: white !important;
 }
 .slick-prev:before{
     content: '\f053';
@@ -31,7 +35,6 @@ section{
 .slick-prev{
     left: -13px !important;
     
-    z-index: 100000 !important;
 }
 .slick-next{
     right: -15px !important;
@@ -39,4 +42,41 @@ section{
 .upComing{
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./assets/how-can-someone-make-this-background-with-html-and-css-i-v0-zjgs096khv591.webp');
     background-size: cover;
+}
+.loader {
+  font-size: 48px;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #666a6d;
+  box-sizing: border-box;
+  text-shadow: 0 0 2px #FFF, 0 0 1px #FFF, 0 0 1px #FFF;
+  letter-spacing: 2px;
+  position: relative;
+}
+.dark .loader{
+    color: #263238;
+}
+.loader::after {
+  content: 'Loading';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #000;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  animation: animloader 3s linear infinite;
+}
+.dark .loader::after{
+    color: #FFF;
+}
+@keyframes animloader {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
 }

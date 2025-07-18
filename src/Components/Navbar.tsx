@@ -12,7 +12,7 @@ export function Nav() {
   const { isDark, handleDarkMood } = useDarkMood()
   const handleLogout = useLogout()
   return (
-    <Navbar  className="rounded-none  z-50 shadow-lg px-5" fluid rounded>
+    <Navbar  className="rounded-none  shadow-lg px-5" fluid rounded>
       <NavbarBrand href="https://flowbite-react.com">
         <Link to='/'>
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Rotana Cinema</span>
