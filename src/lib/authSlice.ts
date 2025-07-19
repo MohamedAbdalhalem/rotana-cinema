@@ -4,7 +4,7 @@ export type authType = {
     token: string | null
 }
 const initialState: authType = {
-  token: null,
+  token:  localStorage.getItem("tkn") || null,
 }
 export const authsilce = createSlice({
     name: 'Auth',

@@ -4,7 +4,6 @@ import Notfound from "./Pages/Notfound";
 import Home from "./Pages/Home";
 import { Provider } from "react-redux";
 import { ourStore } from "./lib/store";
-import GitTokenWhenRefresh from "./Components/GitTokenWhenRefresh";
 import { motion, AnimatePresence } from 'framer-motion';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Layout from "./Components/Layout";
@@ -12,11 +11,17 @@ import AuthRoute from "./Components/AuthRoute";
 import UnAuthRoute from "./Components/UnAuthRoute";
 import Register from "./Pages/Register";
 import { useEffect, useState } from "react";
-import MovieDetials from "./Pages/MovieDetials";
+import Movie from "./Pages/Movie";
+import MovieDetials from "./Components/MovieDetials";
 const router = createBrowserRouter([{
   path: '', element: <Layout />, children: [
     { path: '', element: <AuthRoute><Home /></AuthRoute> },
-    {path:'movieDetials/:id',element:<AuthRoute><MovieDetials /></AuthRoute>},
+    {
+      path: 'movieDetials/:id', element: <AuthRoute><Movie /></AuthRoute>,
+      children: [
+        { path: '', element: <MovieDetials  />}
+      ]
+    },
     { path: 'register', element: <UnAuthRoute><Register /></UnAuthRoute>  },
     { path: 'login', element: <UnAuthRoute><Login /></UnAuthRoute> },
     {path: '*',element:<Notfound/>}
@@ -53,7 +58,6 @@ return (
       </AnimatePresence>
         <Provider store={ourStore}>
           <QueryClientProvider client={queryClient}>
-            <GitTokenWhenRefresh />
             <RouterProvider router={router} />
           </QueryClientProvider>
         </Provider>
