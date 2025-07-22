@@ -19,8 +19,10 @@ export default function usePopularMovies() {
     useEffect(() => {
         if (sessionStorage.getItem('page')) {
             setPage(Number(sessionStorage.getItem('page')))
-            return sessionStorage.removeItem('page')
-       } 
+        } 
+        return () => {
+             sessionStorage.removeItem('page')
+         }
     },[])
     const {data,isLoading}= useQuery({
         queryKey: ['getPopularMovies', page],

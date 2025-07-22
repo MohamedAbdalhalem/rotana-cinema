@@ -21,8 +21,10 @@ export default function useUpcomingMovies() {
       useEffect(() => {
           if (sessionStorage.getItem('page')) {
               setPage(Number(sessionStorage.getItem('page')))
-              return sessionStorage.removeItem('page')
-         } 
+        } 
+        return () => {
+             sessionStorage.removeItem('page')
+         }
       },[])
   const {data,isLoading} = useQuery({
     queryKey: ['getUpcomingMovies',page],
