@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { movieDetialsType } from "../MovieDetials";
+import { movieDetialsType } from "../Types/MovieDetials";
 
 
 export default function useMovieDetials(id: string | undefined) {

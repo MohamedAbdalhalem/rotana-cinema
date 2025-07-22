@@ -2,10 +2,11 @@ import { movieType } from '../Types/MovieType';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-export default function usePopularMovies() {
+import { datesType } from '../Types/DatesType';
+export default function useNowPlayingMovies() {
   const [page, setPage] = useState(1)
     function getPopularMovies() {
-        return axios.get<{ results: movieType[] | undefined }>(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`, {
+        return axios.get<{ results: movieType[] | undefined,total_pages : number, dates : datesType }>(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`, {
             headers: {
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MDRiZjJiMmIyNTM2Y2Y4MWI4MTUwN2U4YmRmZTM0ZSIsIm5iZiI6MTc1MTk5ODI2NS41NCwic3ViIjoiNjg2ZDVmMzk2ZGRlYTcxNjE2NTFlNjExIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.VDWeBtvvDyzpkSqY6Hv5fUjHU6TxMfkaNqvhl_K3QJE',
                 accept: 'application/json'
@@ -27,5 +28,8 @@ export default function usePopularMovies() {
         queryFn:getPopularMovies
     })
     const results = data?.data.results
-    return {page,handlePageChange,isLoading,results}
+    const numOfPages = data?.data.total_pages
+    const dates = data?.data.dates
+    return {page,handlePageChange,isLoading,results,numOfPages,dates}
 }
+

@@ -1,8 +1,8 @@
 import useMovieDetials from '../Hooks/useMovieDetials'
-import MovieDetialsLoadingScreen from '../Components/MovieDetialsLoadingScreen'
-import Director from '../Components/Director'
+import MovieDetialsLoadingScreen from './MovieDetialsLoadingScreen'
+import Director from './Director'
 import { useParams } from 'react-router'
-export default function MovieDetials(){
+export default function MovieOverview(){
     const { id } = useParams()
     const {details,getTime,isLoading} = useMovieDetials(id)
   return (

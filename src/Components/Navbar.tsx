@@ -38,6 +38,7 @@ export function Nav() {
         {token && <>
           <NavbarLink ><NavLink to='/'>Home</NavLink></NavbarLink>
           <Dropdown label="Movies" color='alternative' className="border-0 border-b-[1px]  md:border-0 p-3  w-full md:w-auto  justify-start rounded-none  ">
+      <DropdownItem><NavLink to='/AllMovies'>All Movies</NavLink></DropdownItem>
       <DropdownItem><NavLink to='/PopularMovies'>Popular</NavLink></DropdownItem>
       <DropdownItem><NavLink to='/NowPlayingMovies'>Now Playing</NavLink></DropdownItem>
       <DropdownItem><NavLink to='/UpcomingMovies'>Upcoming</NavLink></DropdownItem>

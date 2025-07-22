@@ -11,18 +11,26 @@ import AuthRoute from "./Components/AuthRoute";
 import UnAuthRoute from "./Components/UnAuthRoute";
 import Register from "./Pages/Register";
 import { useEffect, useState } from "react";
-import Movie from "./Pages/Movie";
-import MovieDetials from "./Components/MovieDetials";
 import CastandCrew from "./Components/CastandCrew";
 import PopularMovies from "./Pages/PopularMovies";
+import MovieOverview from "./Components/MovieOverview";
+import MovieDetials from "./Pages/MovieDetials";
+import TopRatedMovies from "./Pages/TopRatedMovies";
+import UpcomingMovies from "./Pages/UpcomingMovies";
+import NowPlayingMovies from "./Pages/NowPlayingMovies";
+import AllMovies from "./Pages/AllMovies";
 const router = createBrowserRouter([{
   path: '', element: <Layout />, children: [
     { path: '', element: <AuthRoute><Home /></AuthRoute> },
-    {path:'PopularMovies',element:<AuthRoute><PopularMovies/></AuthRoute>},
+    {path:'AllMovies',element:<AuthRoute><AllMovies/></AuthRoute>},
+    { path: 'PopularMovies', element: <AuthRoute><PopularMovies /></AuthRoute> },
+    {path:'TopRatedMovies',element:<AuthRoute><TopRatedMovies/></AuthRoute>},
+    {path:'NowPlayingMovies',element:<AuthRoute><NowPlayingMovies/></AuthRoute>},
+    {path:'UpcomingMovies',element:<AuthRoute><UpcomingMovies/></AuthRoute>},
     {
-      path: 'movieDetials/:id', element: <AuthRoute><Movie /></AuthRoute>,
+      path: 'movieDetials/:id', element: <AuthRoute><MovieDetials /></AuthRoute>,
       children: [
-        { path: 'overview', element: <MovieDetials /> },
+        { path: 'overview', element: <MovieOverview /> },
         {path:'cast&crew',element:<CastandCrew/>}
       ]
     },

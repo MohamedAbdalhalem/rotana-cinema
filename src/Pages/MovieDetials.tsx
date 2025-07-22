@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useParams } from 'react-router'
 
-export default function Movie() {
+export default function MovieDetials() {
   const { id } = useParams()
   return (
     <>
