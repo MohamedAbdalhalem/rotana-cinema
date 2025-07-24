@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { datesType } from '../Types/DatesType';
 export default function useNowPlayingMovies() {
-  const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1)
     function getNowPlayingMovies() {
         return axios.get<{ results: movieType[] | undefined,total_pages : number, dates : datesType }>(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`, {
             headers: {
@@ -14,17 +14,21 @@ export default function useNowPlayingMovies() {
         })
     }
     function handlePageChange({ selected }: { selected: number }) {
-        sessionStorage.setItem('page',String(selected +1))
+        sessionStorage.setItem('nowPlayingMoviesPage',String(selected +1))
         setPage(selected + 1)
     }
     useEffect(() => {
-        if (sessionStorage.getItem('page')) {
-            setPage(Number(sessionStorage.getItem('page')))
-        } 
-                    return () => {
-             sessionStorage.removeItem('page')
-         }
-    },[])
+        const storedPage = sessionStorage.getItem('nowPlayingMoviesPage');
+        if (storedPage) {
+            setPage(+storedPage);
+        }
+
+        return () => {
+            if (!location.pathname.startsWith('/NowPlayingMovies') && !location.pathname.startsWith('/movieDetials')) {
+                sessionStorage.removeItem('nowPlayingMoviesPage');
+            }
+        }
+    }, [location.pathname]);
     const {data,isLoading}= useQuery({
         queryKey: ['getNowPlayingMovies', page],
         queryFn:getNowPlayingMovies

@@ -4,7 +4,7 @@ import Director from './Director'
 import { useParams } from 'react-router'
 export default function MovieOverview(){
     const { id } = useParams()
-    const {details,getTime,isLoading} = useMovieDetials(id)
+  const { details, getTime, isLoading } = useMovieDetials(id)
   return (
     <div className="w-full">
   

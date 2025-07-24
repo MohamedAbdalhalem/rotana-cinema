@@ -2,8 +2,9 @@ import { movieType } from '../Types/MovieType';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+
 export default function useTopRatedMovies() {
-  const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1)
     function getTopRatedMovies() {
         return axios.get<{ results: movieType[] | undefined }>(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`, {
             headers: {
@@ -13,17 +14,21 @@ export default function useTopRatedMovies() {
         })
     }
     function handlePageChange({ selected }: { selected: number }) {
-        sessionStorage.setItem('page',String(selected +1))
+        sessionStorage.setItem('topRatedMoviesPage',String(selected +1))
         setPage(selected + 1)
     }
     useEffect(() => {
-        if (sessionStorage.getItem('page')) {
-            setPage(Number(sessionStorage.getItem('page')))
-        } 
+        const storedPage = sessionStorage.getItem('topRatedMoviesPage');
+        if (storedPage) {
+            setPage(+storedPage);
+        }
+
         return () => {
-             sessionStorage.removeItem('page')
-         }
-    },[])
+            if (!location.pathname.startsWith('/TopRatedMovies') && !location.pathname.startsWith('/movieDetials')) {
+                sessionStorage.removeItem('topRatedMoviesPage');
+            }
+        }
+    }, [location.pathname]);
     const {data,isLoading}= useQuery({
         queryKey: ['getTopRatedMovies', page],
         queryFn:getTopRatedMovies

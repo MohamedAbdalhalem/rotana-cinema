@@ -19,6 +19,7 @@ import TopRatedMovies from "./Pages/TopRatedMovies";
 import UpcomingMovies from "./Pages/UpcomingMovies";
 import NowPlayingMovies from "./Pages/NowPlayingMovies";
 import AllMovies from "./Pages/AllMovies";
+import People from "./Pages/People";
 const router = createBrowserRouter([{
   path: '', element: <Layout />, children: [
     { path: '', element: <AuthRoute><Home /></AuthRoute> },
@@ -34,6 +35,7 @@ const router = createBrowserRouter([{
         {path:'cast&crew',element:<CastandCrew/>}
       ]
     },
+    { path:'People',element:<AuthRoute><People/></AuthRoute>},
     { path: 'register', element: <UnAuthRoute><Register /></UnAuthRoute>  },
     { path: 'login', element: <UnAuthRoute><Login /></UnAuthRoute> },
     {path: '*',element:<Notfound/>}

@@ -3,7 +3,6 @@ import { movieType } from '../Types/MovieType'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { datesType } from '../Types/DatesType'
-
 export default function useUpcomingMovies() {
   const [page, setPage] = useState(1)
   async function getUpcomingMovies() {
@@ -15,17 +14,21 @@ export default function useUpcomingMovies() {
    })
   }
   function handlePageChange({ selected }: { selected: number }) {
-          sessionStorage.setItem('page',String(selected +1))
+          sessionStorage.setItem('upcomingMoviespage',String(selected +1))
           setPage(selected + 1)
       }
       useEffect(() => {
-          if (sessionStorage.getItem('page')) {
-              setPage(Number(sessionStorage.getItem('page')))
-        } 
+        const storedPage = sessionStorage.getItem('upcomingMoviespage');
+        if (storedPage) {
+            setPage(+storedPage);
+        }
+
         return () => {
-             sessionStorage.removeItem('page')
-         }
-      },[])
+            if (!location.pathname.startsWith('/UpcomingMovies') && !location.pathname.startsWith('/movieDetials')) {
+                sessionStorage.removeItem('upcomingMoviespage');
+            }
+        }
+    }, [location.pathname]);
   const {data,isLoading} = useQuery({
     queryKey: ['getUpcomingMovies',page],
     queryFn: getUpcomingMovies
