@@ -1,3 +1,4 @@
+import { Link } from "react-router"
 import usePersonCredits from "../Hooks/usePersonCredits"
 
 export default function PersonCredits({ personId, department }: { personId: string, department: string }) {
@@ -29,7 +30,10 @@ export default function PersonCredits({ personId, department }: { personId: stri
             {cast?.length != 0 && <div>
             <p className="text-gray-900 mb-4 w-fit dark:text-white text-2xl font-extrabold">Cast :</p>
             {cast?.map(ele => (
-              <p key={ele.id} className='text-gray-900 w-fit dark:text-white hover:text-[#1A71E3] transition-all font-bold text-lg mb-4 '>
+              <Link
+                to={ele.title ? `/movies/${ele.id}/overview` :
+              `/tvShows/${ele.id}/overview`}
+                key={ele.id} className='text-gray-900 block w-fit dark:text-white hover:text-[#1A71E3] transition-all font-bold text-lg mb-4 '>
                 {ele.title ? ele.title : ele.name}
                 <span className="text-gray-400">
                   (
@@ -40,13 +44,18 @@ export default function PersonCredits({ personId, department }: { personId: stri
                         : ''}
                   )
                 </span>
-              </p>
+              </Link>
             ))}
           </div>}
           {crew?.length!= 0 && <div>
-            <p className="text-gray-900 mb-4 dark:text-white text-2xl font-extrabold">Crew :</p>
+            <div
+             
+              className="text-gray-900 mb-4 dark:text-white text-2xl font-extrabold">Crew :</div>
             {cast?.map(ele => (
-              <p key={ele.id} className='text-gray-900 dark:text-white hover:text-[#1A71E3] transition-all font-bold text-lg mb-4 '>
+              <Link
+                 to={ele.media_type == 'movie' ? `/movies/${ele.id}/overview` :
+              `/tvShows/${ele.id}/overview`}
+                key={ele.id} className='text-gray-900 block dark:text-white hover:text-[#1A71E3] transition-all font-bold text-lg mb-4 '>
                 {ele.title ? ele.title : ele.name}
                 <span className="text-gray-400">
                   (
@@ -57,7 +66,7 @@ export default function PersonCredits({ personId, department }: { personId: stri
                         : ''}
                   )
                 </span>
-              </p>
+              </Link>
             ))}
             </div>}
           </div> }

@@ -5,5 +5,6 @@ export type movieType = {
     release_date: string,
     id: number,
     poster_path: string,
-    overview:string
+    overview: string,
+    media_type : 'tv' | 'movie'
 }

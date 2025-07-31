@@ -3,6 +3,7 @@ import "react-multi-carousel/lib/styles.css";
 import useKnowFor from "../Hooks/useKnowFor";
 import LoudingISlider from "./LoudingSlider";
 import notFoundImg from '../assets/No_Image_Available.jpg'
+import { Link } from 'react-router';
 export default function KnowForSlider({ personId }: { personId: string }) {
   const {cast,crew,isLoading} = useKnowFor(personId)
   const responsive = {
@@ -33,7 +34,10 @@ export default function KnowForSlider({ personId }: { personId: string }) {
                     responsive={responsive}
                     itemClass="pe-5"
       >
-          {cast?.map(item => <div  key={item.id}  className="block h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+          {cast?.map(item => <Link
+            to={item.media_type == 'movie' ? `/movies/${item.id}/overview` :
+              `/tvShows/${item.id}/overview`}
+            key={item.id} className="block h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
                                   <img
                                       className="w-full h-48 object-cover"
                           src={ item.poster_path ? `https://image.tmdb.org/t/p/w500_and_h282_face/${item.poster_path}`  : notFoundImg  }
@@ -42,8 +46,11 @@ export default function KnowForSlider({ personId }: { personId: string }) {
                                   <div className="p-4">
                                       <h2 className="text-lg font-semibold text-gray-800 dark:text-white text-center">{item.title ? item.title : item.name}</h2>
                                   </div>
-          </div>)}
-          {crew?.map(item => <div  key={item.id}  className="block h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+          </Link>)}
+          {crew?.map(item => <Link
+            to={item.media_type == 'movie' ? `/movies/${item.id}/overview` :
+              `/tvShows/${item.id}/overview`}
+            key={item.id} className="block h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
                                   <img
                                       className="w-full h-48 object-cover"
                           src={ item.poster_path ? `https://image.tmdb.org/t/p/w500_and_h282_face/${item.poster_path}`  : notFoundImg  }
@@ -52,7 +59,7 @@ export default function KnowForSlider({ personId }: { personId: string }) {
                                   <div className="p-4">
                                       <h2 className="text-lg font-semibold text-gray-800 dark:text-white text-center">{item.title ? item.title : item.name}</h2>
                                   </div>
-          </div>)}
+          </Link>)}
             </Carousel>
             </>
   )

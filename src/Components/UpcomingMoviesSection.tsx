@@ -1,4 +1,3 @@
-import useCastAndCrew from "../Hooks/useMovieCastAndCrew"
 import Carousel from "react-multi-carousel";
 import LoudingISlider from "./LoudingSlider";
 import useUpcomingMovies from "../Hooks/useUpcomingMovies";
