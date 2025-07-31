@@ -1,50 +1,86 @@
-# React + TypeScript + Vite
+# 🎬 Rotana Cinema Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive web application for browsing movies and TV shows – inspired by Rotana Cinema.  
+Built with **React + TypeScript**, and powered by **TMDB API**, it features rich UI, full movie/TV data, Firebase authentication, and dark mode support.
 
-Currently, two official plugins are available:
+## 🌐 Live Demo
+🔗 [rotana-cinema-rose.vercel.app](https://rotana-cinema-rose.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### 🏠 Home Page
+- 🔍 Search functionality.
+- 🎞️ Trending Movies.
+- 🎥 Upcoming Movies.
+- 📺 Trending TV Shows.
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### 🎬 Movies Page
+- ✅ Pagination & Filtering.
+- 🎫 Each movie card links to a **Movie Details Page**, split into:
+  - **Movie Info**: overview, top cast (slider), and recommended movies.
+  - **Cast & Crew**: full list of contributors.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### 📺 TV Shows Page
+- ✅ Pagination & Filtering.
+- 📘 Each show card leads to a **TV Show Details Page**, with:
+  - **TV Info**: includes all seasons + top cast.
+  - **Cast & Crew**: full listing.
+- 📂 Clicking a season opens a **Season Details Page**:
+  - Contains season info and a list of episodes (name, image, rating, air date).
+- ▶️ Clicking an episode opens an **Episode Page**:
+  - Includes full episode details + sliders for **Crew** and **Guest Stars**.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+
+### 👤 People Page
+- ✅ Supports Pagination.
+- 📇 Each person card links to a **Person Details Page**, showing:
+  - Biography summary.
+  - Profession (e.g. Actor, Director, etc.).
+  - Date and place of birth.
+  - Known for: list of movies and TV shows they participated in.
+  - External links: social media, Wikipedia, etc.
+
+---
+
+## 🔐 Authentication
+- Firebase Authentication (Login/Register).
+
+## 🌙 Dark Mode
+- Full support for dark/light themes.
+
+---
+
+## 🧰 Built With
+
+- **React** + **TypeScript**
+- **React Router v7**
+- **Tailwind CSS** + **Flowbite React**
+- **Redux Toolkit**
+- **TanStack React Query**
+- **TMDB API**
+- **Firebase Auth**
+- **React Hook Form**
+- **Font Awesome**
+- **React Multi Carousel**
+- **Date-fns**
+
+---
+
+## 📦 Installation
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/your-username/rotana-cinema-clone.git
+
+# 2. Install dependencies
+npm install
+
+# 3. Start the development server
+npm run dev
